@@ -19,13 +19,15 @@ public class Bow extends ItemBow implements IBow {
     Object[] recipe;
     int enchantability;
     float drawSpeed;
+    EnumRarity rarity;
 
-    public Bow(String inName, int damage, float inDrawSpeed, int inEnchantability, Object[] inRecipe)
+    public Bow(String inName, int damage, float inDrawSpeed, int inEnchantability, EnumRarity inRarity, Object[] inRecipe)
     {
         name = inName;
         recipe = inRecipe;
         drawSpeed = inDrawSpeed;
         enchantability = inEnchantability;
+        rarity = inRarity;
         this.setMaxDamage(damage);
         this.setUnlocalizedName(name);
     }
@@ -43,10 +45,10 @@ public class Bow extends ItemBow implements IBow {
     }
 
     @Override
-    public int getItemEnchantability()
-    {
-        return enchantability;
-    }
+    public int getItemEnchantability() { return enchantability; }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) { return rarity; }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)

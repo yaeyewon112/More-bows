@@ -4,6 +4,7 @@ import com.lucidsage.morebows.item.IBow;
 import com.lucidsage.morebows.item.Bow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -28,7 +29,10 @@ public class MoreBows
     @EventHandler
     public void preinit(FMLPreInitializationEvent event)
     {
-        bows.add(new Bow("stoneBow", 484, 20.0F, Item.ToolMaterial.STONE.getEnchantability(), new Object[]{
+        bows.add(new Bow("stoneBow", 484, 20.0F,
+                Item.ToolMaterial.STONE.getEnchantability(),
+                EnumRarity.COMMON,
+                new Object[]{
                 " $*",
                 "#(*",
                 " $*",
@@ -38,7 +42,10 @@ public class MoreBows
                 '(', Items.bow
         }));
 
-        bows.add(new Bow("ironBow", 550, 16.0F, Item.ToolMaterial.IRON.getEnchantability(), new Object[]{
+        bows.add(new Bow("ironBow", 550, 16.0F,
+                Item.ToolMaterial.IRON.getEnchantability(),
+                EnumRarity.COMMON,
+                new Object[]{
                 " $*",
                 "$(*",
                 " $*",
@@ -47,7 +54,10 @@ public class MoreBows
                 '(', Items.bow
         }));
 
-        bows.add(new Bow("goldBow", 68, 10.0F, Item.ToolMaterial.GOLD.getEnchantability(), new Object[]{
+        bows.add(new Bow("goldBow", 68, 10.0F,
+                Item.ToolMaterial.GOLD.getEnchantability(),
+                EnumRarity.UNCOMMON,
+                new Object[]{
                 " $*",
                 "$(*",
                 " $*",
@@ -56,7 +66,10 @@ public class MoreBows
                 '(', Items.bow
         }));
 
-        bows.add(new Bow("diamondBow", 1016, 10.0F, Item.ToolMaterial.EMERALD.getEnchantability(), new Object[]{
+        bows.add(new Bow("diamondBow", 1016, 10.0F,
+                Item.ToolMaterial.EMERALD.getEnchantability(),
+                EnumRarity.RARE,
+                new Object[]{
                 " $*",
                 "#(*",
                 " $*",
