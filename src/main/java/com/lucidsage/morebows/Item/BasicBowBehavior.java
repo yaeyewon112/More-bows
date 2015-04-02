@@ -75,6 +75,8 @@ public class BasicBowBehavior implements IBowBehavior {
                 playerIn.inventory.consumeInventoryItem(Items.arrow);
             }
 
+            ArrowModifier(entityarrow);
+
             playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(item)]);
 
             if (!worldIn.isRemote)
@@ -82,5 +84,10 @@ public class BasicBowBehavior implements IBowBehavior {
                 worldIn.spawnEntityInWorld(entityarrow);
             }
         }
+    }
+
+    protected void ArrowModifier(EntityArrow entityarrow)
+    {
+
     }
 }

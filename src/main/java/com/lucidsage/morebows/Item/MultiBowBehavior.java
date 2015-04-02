@@ -5,21 +5,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.Random;
 
-public class MultiBowBehavior implements IBowBehavior
+public class MultiBowBehavior extends BasicBowBehavior
 {
-    private Random rand = new Random();
-
     public void Firing(ItemStack stack, World worldIn, EntityPlayer playerIn, float timeUsed, Item item, double drawSpeedRelativeToVanilla)
     {
-        BasicBowBehavior basic = new BasicBowBehavior();
-
-        basic.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla);
-        basic.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla, 1.8F, true);
+        super.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla);
+        super.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla, 1.8F, true);
 
         // Random chance of a bonus arrow!
-        if(rand.nextInt(4) == 0)
-            basic.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla, 1.6F, false);
+        if(itemRand.nextInt(4) == 0)
+            super.Firing(stack, worldIn, playerIn, timeUsed, item, drawSpeedRelativeToVanilla, 1.6F, false);
     }
 }

@@ -1,5 +1,6 @@
 package com.lucidsage.morebows;
 
+import com.lucidsage.morebows.item.FlameBowBehavior;
 import com.lucidsage.morebows.item.IItemToRegister;
 import com.lucidsage.morebows.item.Bow;
 import com.lucidsage.morebows.item.MultiBowBehavior;
@@ -91,6 +92,20 @@ public class MoreBows
                         " (*",
                         '#', Items.iron_ingot,
                         '*', Items.string,
+                        '(', ironBow
+                }));
+
+        bows.add(new Bow("flameBow", 576, 0.6,
+                Item.ToolMaterial.GOLD.getEnchantability(),
+                EnumRarity.EPIC,
+                new FlameBowBehavior(),
+                new Object[]{
+                        " N|",
+                        " #(",
+                        " N|",
+                        'N', Blocks.netherrack,
+                        '|', Items.blaze_rod,
+                        '#', Items.gold_ingot,
                         '(', ironBow
                 }));
     }
