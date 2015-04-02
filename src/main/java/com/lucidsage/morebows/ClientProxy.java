@@ -1,6 +1,6 @@
 package com.lucidsage.morebows;
 
-import com.lucidsage.morebows.item.IBow;
+import com.lucidsage.morebows.item.IItemToRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 
@@ -11,6 +11,6 @@ public class ClientProxy extends CommonProxy
 	{
 		ItemModelMesher itemModelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 
-		for (IBow b : MoreBows.bows) { b.clientInit(itemModelMesher); }
+		for (IItemToRegister b : MoreBows.bows) { b.clientInit(itemModelMesher); }
 	}
 }

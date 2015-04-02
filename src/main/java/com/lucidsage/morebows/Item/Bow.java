@@ -13,7 +13,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Bow extends ItemBow implements IBow {
+public class Bow extends ItemBow implements IItemToRegister {
 
     String name;
     Object[] recipe;

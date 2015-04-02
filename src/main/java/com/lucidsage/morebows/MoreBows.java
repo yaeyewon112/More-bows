@@ -1,6 +1,6 @@
 package com.lucidsage.morebows;
 
-import com.lucidsage.morebows.item.IBow;
+import com.lucidsage.morebows.item.IItemToRegister;
 import com.lucidsage.morebows.item.Bow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,7 +24,7 @@ public class MoreBows
     @SidedProxy(clientSide = "com.lucidsage.morebows.ClientProxy", serverSide= "com.lucidsage.morebows.CommonProxy")
     public static CommonProxy proxy;
 
-    public static List<IBow> bows = new LinkedList<IBow>();
+    public static List<IItemToRegister> bows = new LinkedList<IItemToRegister>();
 
     @EventHandler
     public void preinit(FMLPreInitializationEvent event)
@@ -83,7 +83,7 @@ public class MoreBows
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        for (IBow b : bows) { b.init(); }
+        for (IItemToRegister b : bows) { b.init(); }
 
         proxy.init();
     }
