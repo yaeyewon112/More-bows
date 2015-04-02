@@ -1,15 +1,16 @@
-package iDiamondhunter.client;
+package com.lucidsage.morebows;
 
-import iDiamondhunter.common.CommonProxyiDiamondhunter;
-import net.minecraftforge.client.MinecraftForgeClient;
+import com.lucidsage.morebows.item.IBow;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
 
-public class ClientProxyiDiamondhunter extends CommonProxyiDiamondhunter
+public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void registerRenderThings()
+	public void init()
 	{
-		
-		MinecraftForgeClient.preloadTexture("/MoreBows/Bows.png");
-		
+		ItemModelMesher itemModelMesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+
+		for (IBow b : MoreBows.bows) { b.clientInit(itemModelMesher); }
 	}
 }

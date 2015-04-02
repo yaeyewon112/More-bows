@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "morebows",
+  "name": "More Bows!",
+  "description": "Adds more fun and interesting bows.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/LucidSage/More-bows",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["LucidSage"],
+  "credits": "Thanks to GaussFire and iDiamondhunter.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
