@@ -2,6 +2,7 @@ package com.lucidsage.morebows.item;
 
 import com.lucidsage.morebows.MoreBows;
 import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -12,20 +13,23 @@ import net.minecraft.item.*;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Bow extends ItemBow implements IItemToRegister {
 
     String name;
     Object[] recipe;
     int enchantability;
-    float drawSpeed;
+    double drawSpeedRelativeToVanilla;
     EnumRarity rarity;
+    ModelResourceLocation[] pullingModels = new ModelResourceLocation[3];
 
-    public Bow(String inName, int damage, float inDrawSpeed, int inEnchantability, EnumRarity inRarity, Object[] inRecipe)
+    public Bow(String inName, int damage, double inDrawSpeedRelativeToVanilla, int inEnchantability, EnumRarity inRarity, Object[] inRecipe)
     {
         name = inName;
         recipe = inRecipe;
-        drawSpeed = inDrawSpeed;
+        drawSpeedRelativeToVanilla = inDrawSpeedRelativeToVanilla;
         enchantability = inEnchantability;
         rarity = inRarity;
         this.setMaxDamage(damage);
@@ -41,7 +45,18 @@ public class Bow extends ItemBow implements IItemToRegister {
 
     public void clientInit(ItemModelMesher itemModelMesher)
     {
-        itemModelMesher.register(this, 0, new ModelResourceLocation(MoreBows.MODID + ":" + name, "inventory"));
+        String baseModelName = MoreBows.MODID + ":" + name;
+
+        ModelBakery.addVariantName(this, baseModelName);
+        itemModelMesher.register(this, 0, new ModelResourceLocation(baseModelName, "inventory"));
+
+        for (int i = 0; i < 3; i++) {
+            String variantName = baseModelName + "_pulling_" + Integer.toString(i);
+            pullingModels[i] = new ModelResourceLocation(variantName, "inventory");
+
+            ModelBakery.addVariantName(this, variantName);
+            itemModelMesher.register(this, i + 1, pullingModels[i]);
+        }
     }
 
     @Override
@@ -49,6 +64,18 @@ public class Bow extends ItemBow implements IItemToRegister {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) { return rarity; }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ModelResourceLocation getModel(ItemStack stack, EntityPlayer player, int useRemaining)
+    {
+        if(useRemaining < 1) return null;
+
+        double vanillaTimeToFullPull = 18;
+        double timeToFullPull = vanillaTimeToFullPull * drawSpeedRelativeToVanilla;
+        double usedSoFar = this.getMaxItemUseDuration(stack) - useRemaining;
+        return pullingModels[ Math.min((int)Math.floor((usedSoFar / timeToFullPull) * 2.0), 2) ];
+    }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)
@@ -62,7 +89,7 @@ public class Bow extends ItemBow implements IItemToRegister {
 
         if (flag || playerIn.inventory.hasItem(Items.arrow))
         {
-            float f = (float)j / drawSpeed;
+            float f = (float)j / (float)(20.0 * drawSpeedRelativeToVanilla);
             f = (f * f + f * 2.0F) / 3.0F;
 
             if ((double)f < 0.1D)

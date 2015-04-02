@@ -29,7 +29,7 @@ public class MoreBows
     @EventHandler
     public void preinit(FMLPreInitializationEvent event)
     {
-        bows.add(new Bow("stoneBow", 484, 20.0F,
+        bows.add(new Bow("stoneBow", 484, 1.0,
                 Item.ToolMaterial.STONE.getEnchantability(),
                 EnumRarity.COMMON,
                 new Object[]{
@@ -42,19 +42,20 @@ public class MoreBows
                 '(', Items.bow
         }));
 
-        bows.add(new Bow("ironBow", 550, 16.0F,
+        Bow ironBow = new Bow("ironBow", 550, 0.8,
                 Item.ToolMaterial.IRON.getEnchantability(),
                 EnumRarity.COMMON,
                 new Object[]{
-                " $*",
-                "$(*",
-                " $*",
-                '*', Items.string,
-                '$', Items.iron_ingot,
-                '(', Items.bow
-        }));
+                        " $*",
+                        "$(*",
+                        " $*",
+                        '*', Items.string,
+                        '$', Items.iron_ingot,
+                        '(', Items.bow
+                });
+        bows.add(ironBow);
 
-        bows.add(new Bow("goldBow", 68, 10.0F,
+        bows.add(new Bow("goldBow", 68, 0.5,
                 Item.ToolMaterial.GOLD.getEnchantability(),
                 EnumRarity.UNCOMMON,
                 new Object[]{
@@ -66,7 +67,7 @@ public class MoreBows
                 '(', Items.bow
         }));
 
-        bows.add(new Bow("diamondBow", 1016, 10.0F,
+        bows.add(new Bow("diamondBow", 1016, 0.5,
                 Item.ToolMaterial.EMERALD.getEnchantability(),
                 EnumRarity.RARE,
                 new Object[]{
@@ -78,6 +79,18 @@ public class MoreBows
                 '$', Items.diamond,
                 '(', Items.bow
         }));
+
+        bows.add(new Bow("multiBow", 550, 0.6,
+                Item.ToolMaterial.IRON.getEnchantability(),
+                EnumRarity.RARE,
+                new Object[]{
+                        " (*",
+                        "# *",
+                        " (*",
+                        '#', Items.iron_ingot,
+                        '*', Items.string,
+                        '(', ironBow
+                }));
     }
 
     @EventHandler
