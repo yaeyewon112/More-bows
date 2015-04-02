@@ -2,6 +2,7 @@ package com.lucidsage.morebows;
 
 import com.lucidsage.morebows.item.IItemToRegister;
 import com.lucidsage.morebows.item.Bow;
+import com.lucidsage.morebows.item.MultiBowBehavior;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -83,6 +84,7 @@ public class MoreBows
         bows.add(new Bow("multiBow", 550, 0.6,
                 Item.ToolMaterial.IRON.getEnchantability(),
                 EnumRarity.RARE,
+                new MultiBowBehavior(),
                 new Object[]{
                         " (*",
                         "# *",
