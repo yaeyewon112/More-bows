@@ -6,12 +6,21 @@ import net.minecraft.world.World;
 
 public class EntityEnderArrow extends EntityArrow {
     long timeStart;
+    int numberOfWaves;
 
     public EntityEnderArrow(World worldIn, EntityLivingBase shooter, float velocity)
     {
         super(worldIn, shooter, velocity);
 
         timeStart = worldIn.getTotalWorldTime();
+        numberOfWaves = 3;
+    }
+    public EntityEnderArrow(World worldIn, int inNumberOfWaves)
+    {
+        super(worldIn);
+
+        timeStart = worldIn.getTotalWorldTime();
+        numberOfWaves = inNumberOfWaves;
     }
 
     @Override
@@ -28,11 +37,12 @@ public class EntityEnderArrow extends EntityArrow {
 
     protected void FireBarrage()
     {
-        FireArrow();
-        FireArrow();
-        FireArrow();
-        FireArrow();
-        FireArrow();
+        if(numberOfWaves == 0)
+            return;
+
+        for (int i = 0; i < 5; i++) {
+            FireArrow();
+        }
 
         timeStart = 0;
     }
@@ -54,7 +64,7 @@ public class EntityEnderArrow extends EntityArrow {
 
     protected void FireArrow()
     {
-        EntityArrow entityarrow = new EntityArrow(worldObj);
+        EntityArrow entityarrow = new EntityEnderArrow(worldObj, numberOfWaves - 1);
 
         entityarrow.setPositionAndRotation(this.posX, this.posY + 20, this.posZ, 0.0F, 0.0F);
         entityarrow.setThrowableHeading(0, -.1, 0, 1.6F, 10F);
