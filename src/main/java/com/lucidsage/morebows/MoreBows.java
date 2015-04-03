@@ -2,6 +2,7 @@ package com.lucidsage.morebows;
 
 import com.lucidsage.morebows.behavior.EnderBowBehavior;
 import com.lucidsage.morebows.behavior.FlameBowBehavior;
+import com.lucidsage.morebows.behavior.FrostBowBehavior;
 import com.lucidsage.morebows.behavior.MultiBowBehavior;
 import com.lucidsage.morebows.item.*;
 import net.minecraft.init.Blocks;
@@ -97,7 +98,7 @@ public class MoreBows
 
         bows.add(new Bow("flameBow", 576, 0.6,
                 Item.ToolMaterial.GOLD.getEnchantability(),
-                EnumRarity.EPIC,
+                EnumRarity.RARE,
                 new FlameBowBehavior(),
                 new Object[]{
                         " N|",
@@ -109,11 +110,10 @@ public class MoreBows
                         '(', ironBow
                 }));
 
-        EnderBowBehavior enderBowBehavior = new EnderBowBehavior();
         bows.add(new Bow("enderBow", 215, 1.1,
                 Item.ToolMaterial.GOLD.getEnchantability(),
                 EnumRarity.EPIC,
-                enderBowBehavior,
+                new EnderBowBehavior(),
                 new Object[]{
                         " #P",
                         " E(",
@@ -121,6 +121,20 @@ public class MoreBows
                         'P', Items.ender_pearl,
                         'E', Items.ender_eye,
                         '#', Items.gold_ingot,
+                        '(', ironBow
+                }));
+
+        bows.add(new Bow("frostBow", 550, 1.3,
+                Item.ToolMaterial.IRON.getEnchantability(),
+                EnumRarity.RARE,
+                new FrostBowBehavior(),
+                new Object[]{
+                        " $*",
+                        "#(*",
+                        " $*",
+                        '#', Items.snowball,
+                        '*', Items.string,
+                        '$', Blocks.ice,
                         '(', ironBow
                 }));
     }
