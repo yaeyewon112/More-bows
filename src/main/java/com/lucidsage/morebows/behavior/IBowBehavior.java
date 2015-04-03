@@ -1,4 +1,4 @@
-package com.lucidsage.morebows.item;
+package com.lucidsage.morebows.behavior;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

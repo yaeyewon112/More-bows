@@ -1,9 +1,9 @@
 package com.lucidsage.morebows;
 
-import com.lucidsage.morebows.item.FlameBowBehavior;
-import com.lucidsage.morebows.item.IItemToRegister;
-import com.lucidsage.morebows.item.Bow;
-import com.lucidsage.morebows.item.MultiBowBehavior;
+import com.lucidsage.morebows.behavior.EnderBowBehavior;
+import com.lucidsage.morebows.behavior.FlameBowBehavior;
+import com.lucidsage.morebows.behavior.MultiBowBehavior;
+import com.lucidsage.morebows.item.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -105,6 +105,21 @@ public class MoreBows
                         " N|",
                         'N', Blocks.netherrack,
                         '|', Items.blaze_rod,
+                        '#', Items.gold_ingot,
+                        '(', ironBow
+                }));
+
+        EnderBowBehavior enderBowBehavior = new EnderBowBehavior();
+        bows.add(new Bow("enderBow", 215, 1.1,
+                Item.ToolMaterial.GOLD.getEnchantability(),
+                EnumRarity.EPIC,
+                enderBowBehavior,
+                new Object[]{
+                        " #P",
+                        " E(",
+                        " #P",
+                        'P', Items.ender_pearl,
+                        'E', Items.ender_eye,
                         '#', Items.gold_ingot,
                         '(', ironBow
                 }));

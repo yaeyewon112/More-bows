@@ -1,6 +1,8 @@
 package com.lucidsage.morebows.item;
 
 import com.lucidsage.morebows.MoreBows;
+import com.lucidsage.morebows.behavior.BasicBowBehavior;
+import com.lucidsage.morebows.behavior.IBowBehavior;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;

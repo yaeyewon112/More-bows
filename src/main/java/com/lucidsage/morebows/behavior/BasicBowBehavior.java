@@ -1,4 +1,4 @@
-package com.lucidsage.morebows.item;
+package com.lucidsage.morebows.behavior;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -47,7 +47,7 @@ public class BasicBowBehavior implements IBowBehavior {
                 perMaxUsed = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(worldIn, playerIn, perMaxUsed * velocity);
+            EntityArrow entityarrow = getEntityArrow(worldIn, playerIn, perMaxUsed * velocity);
 
             if (perMaxUsed == 1.0F)
             {
@@ -86,8 +86,9 @@ public class BasicBowBehavior implements IBowBehavior {
         }
     }
 
-    protected void ArrowModifier(EntityArrow entityarrow)
-    {
-
+    protected EntityArrow getEntityArrow(World worldIn, EntityPlayer playerIn, float velocity) {
+        return new EntityArrow(worldIn, playerIn, velocity);
     }
+
+    protected void ArrowModifier(EntityArrow entityarrow) { }
 }
