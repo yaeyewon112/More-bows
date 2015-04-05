@@ -20,8 +20,8 @@ public class Bow extends ItemBow implements IItemToRegister {
     int enchantability;
     double drawSpeedRelativeToVanilla;
     EnumRarity rarity;
-    ModelResourceLocation[] pullingModels = new ModelResourceLocation[3];
     IBowBehavior behavior;
+    String[] pullingModelNames = new String[3];
 
     public Bow(String inName, int damage, double inDrawSpeedRelativeToVanilla, int inEnchantability, EnumRarity inRarity, Object[] inRecipe)
     {
@@ -47,6 +47,7 @@ public class Bow extends ItemBow implements IItemToRegister {
         GameRegistry.addRecipe(new ItemStack(this, 1), recipe);
     }
 
+    @SideOnly(Side.CLIENT)
     public void clientInit(ItemModelMesher itemModelMesher)
     {
         String baseModelName = MoreBows.MODID + ":" + name;
@@ -56,10 +57,11 @@ public class Bow extends ItemBow implements IItemToRegister {
 
         for (int i = 0; i < 3; i++) {
             String variantName = baseModelName + "_pulling_" + Integer.toString(i);
-            pullingModels[i] = new ModelResourceLocation(variantName, "inventory");
+            pullingModelNames[i] = variantName;
+            ModelResourceLocation pullingModel = new ModelResourceLocation(variantName, "inventory");
 
             ModelBakery.addVariantName(this, variantName);
-            itemModelMesher.register(this, i + 1, pullingModels[i]);
+            itemModelMesher.register(this, i + 1, pullingModel);
         }
     }
 
@@ -78,7 +80,9 @@ public class Bow extends ItemBow implements IItemToRegister {
         double vanillaTimeToFullPull = 18;
         double timeToFullPull = vanillaTimeToFullPull * drawSpeedRelativeToVanilla;
         double usedSoFar = this.getMaxItemUseDuration(stack) - useRemaining;
-        return pullingModels[ Math.min((int) Math.floor((usedSoFar / timeToFullPull) * 2.0), 2) ];
+        String variantName = pullingModelNames[ Math.min((int) Math.floor((usedSoFar / timeToFullPull) * 2.0), 2) ];
+
+        return new ModelResourceLocation(variantName, "inventory");
     }
 
     @Override
