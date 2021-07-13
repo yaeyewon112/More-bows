@@ -1,0 +1,16 @@
+[
+{
+  "modid": "morebows",
+  "name": "More Bows: Artis",
+  "description": "Port of More Bows to newer MC versions",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://yewonmods.kro.kr",
+  "updateUrl": "http://yewonmods.kro.kr",
+  "authorList": ["yaeyewon112"],
+  "credits": "Thanks to GaussFire, iDiamondhunter, and LucidSage.",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
